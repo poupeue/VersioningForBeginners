@@ -1,3 +1,16 @@
+--[[
+
+ _______  _______ _________ _______           _______  _______  _______   _________ _______  _______  _        ______   _______          
+(  ____ )(  ____ \\__   __/(  ____ \|\     /|(  ___  )(  ____ )(  ____ \  \__   __/(  ___  )(  ___  )( \      (  ___ \ (  ___  )|\     /|
+| (    )|| (    \/   ) (   | (    \/| )   ( || (   ) || (    )|| (    \/     ) (   | (   ) || (   ) || (      | (   ) )| (   ) |( \   / )
+| (____)|| (__       | |   | (__    | | _ | || (___) || (____)|| (__         | |   | |   | || |   | || |      | (__/ / | |   | | \ (_) / 
+|  _____)|  __)      | |   |  __)   | |( )| ||  ___  ||     __)|  __)        | |   | |   | || |   | || |      |  __ (  | |   | |  ) _ (  
+| (      | (         | |   | (      | || || || (   ) || (\ (   | (           | |   | |   | || |   | || |      | (  \ \ | |   | | / ( ) \ 
+| )      | (____/\   | |   | (____/\| () () || )   ( || ) \ \__| (____/\     | |   | (___) || (___) || (____/\| )___) )| (___) |( /   \ )
+|/       (_______/   )_(   (_______/(_______)|/     \||/   \__/(_______/     )_(   (_______)(_______)(_______/|/ \___/ (_______)|/     \|
+
+]]
+
 local UserInputService = game:GetService("UserInputService")
 local isMobile = UserInputService.TouchEnabled and not UserInputService.KeyboardEnabled
 
@@ -56,7 +69,6 @@ end)
 local scroll = Instance.new("ScrollingFrame")
 scroll.Size = UDim2.new(1, -20, 1, -60)
 scroll.Position = UDim2.new(0, 10, 0, 50)
-scroll.CanvasSize = UDim2.new(0, 0, 0, 1000)
 scroll.BackgroundTransparency = 1
 scroll.ScrollBarThickness = 8
 scroll.AutomaticCanvasSize = Enum.AutomaticSize.Y
@@ -66,6 +78,16 @@ local layout = Instance.new("UIListLayout")
 layout.Padding = UDim.new(0, 10)
 layout.SortOrder = Enum.SortOrder.LayoutOrder
 layout.Parent = scroll
+
+local function updateCanvasSize()
+	local totalHeight = 0
+	for _, child in ipairs(scroll:GetChildren()) do
+		if child:IsA("TextLabel") then
+			totalHeight = totalHeight + child.Size.Y.Offset
+		end
+	end
+	scroll.CanvasSize = UDim2.new(0, 0, 0, totalHeight + 20)  
+end
 
 local function addParagraph(titleText, contentText)
 	local title = Instance.new("TextLabel")
@@ -92,6 +114,8 @@ local function addParagraph(titleText, contentText)
 	content.TextYAlignment = Enum.TextYAlignment.Top
 	content.Text = contentText
 	content.Parent = scroll
+	
+	updateCanvasSize()
 end
 
 addParagraph("Overview", [[ This shows how to use Semantic Versioning to label updates in the format: 

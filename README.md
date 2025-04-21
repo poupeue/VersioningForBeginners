@@ -1,4 +1,4 @@
-# Semantic Versioning For Beginners
+# SemanticVersioning For Beginners
 ---
 
 This shows how a project uses Semantic Versioning to label updates in the format:
@@ -8,7 +8,7 @@ vMAJOR.MINOR.PATCH
 What the version numbers mean:
 
 MAJOR – Big changes. Breaking compatibility.
-Example: Changing how a core command works or removing features.
+Example: Revamping the project with new core logic, layout, or structure.
 E.g., v1.0.0 → v2.0.0
 
 MINOR – New features, still compatible with older versions.

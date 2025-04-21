@@ -1,7 +1,7 @@
 # SemanticVersioning For Beginners
 ---
 
-This shows how a project uses Semantic Versioning to label updates in the format:
+This shows how to use Semantic Versioning to label updates in the format:
 
 vMAJOR.MINOR.PATCH
 

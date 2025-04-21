@@ -1,4 +1,4 @@
-# VersioningForBeginners
+# Semantic Versioning For Beginners
 ---
 
 This shows how a project uses Semantic Versioning to label updates in the format:
